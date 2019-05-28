@@ -10,6 +10,7 @@ class Composer(object):
             raise ValueError('Modules should contain at least one module')
         pending = self._traverse(modules)
         self.modules = [m for m in self._toposort(pending)]
+        print(self.modules)
         self.instances = self._get_instances(versions)
         self.cuda_ver = cuda_ver
         self.cudnn_ver = cudnn_ver

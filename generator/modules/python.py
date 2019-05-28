@@ -37,7 +37,7 @@ class Python(Module):
             ''' % (
                 self.version,
                 self.version,
-                '-extra' if self.composer.ubuntu_ver.startswith('18.') else '',
+                '-extra' if self.composer.ubuntu_ver.startswith('16.') else '',
                 self.version,
                 self.version,
                 self.version,

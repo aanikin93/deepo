@@ -6,11 +6,26 @@ from .python import Python
 
 
 @dependency(Tools, Python, Boost)
-@source('git')
-@version('4.0.1')
+# @source('git')
+@source('pip')
+@version('latest')
 class Opencv(Module):
-
+    def __init__(self, manager, **args):
+        super(self.__class__, self).__init__(manager, **args)
+        
     def build(self):
+        if self.version == 'latest':
+            opencv_version = "opencv-python"
+        else:
+            opencv_version = "opencv-python==%s" % (self.version)
+        print("OpenCV version: %s" % opencv_version)
+        return r'''
+            $PIP_INSTALL \
+                %s \
+                && \
+        ''' % opencv_version
+        
+    def build_from_source(self):
         return r'''
             DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
                 libatlas-base-dev \
