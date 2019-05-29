@@ -20,6 +20,22 @@ class Opencv(Module):
             opencv_version = "opencv-python==%s" % (self.version)
         print("OpenCV version: %s" % opencv_version)
         return r'''
+            apt-get update && \
+            DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
+                libatlas-base-dev \
+                libgflags-dev \
+                libgoogle-glog-dev \
+                libhdf5-serial-dev \
+                libleveldb-dev \
+                liblmdb-dev \
+                libprotobuf-dev \
+                libsnappy-dev \
+                protobuf-compiler \
+                libsm6 \
+                libxext6 \
+                libxrender-dev \
+                && \
+                
             $PIP_INSTALL \
                 %s \
                 && \
